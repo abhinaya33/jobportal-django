@@ -1,0 +1,83 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div class="row"> -->
+    <!-- <div class="col-lg-12 mb-4"> -->
+      <!-- Simple Tables -->
+
+      <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <h1 class="text-white font-weight-bold">Product Designer</h1>
+              <div class="custom-breadcrumbs">
+                <a href="{% url 'employersdash' %}">Home</a> <span class="mx-2 slash">/</span>
+                <a href="#">Job</a> <span class="mx-2 slash">/</span>
+                <span class="text-white"><strong>Product Designer</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="site-section">
+        <div class="container">
+          <div>
+
+   
+      
+            <div class="card ">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Simple Tables</h6>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>userprofile</th>
+                      <th>resume</th>
+                      <th>coverletter</th>
+                      <th>applied date</th>
+                      <th>remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in job %}
+                    <tr>
+                      <td>{{i.applicant.image.url}}</td>
+                      <td>{{ i.resume }}</td>
+                      <td>{{ i.cover_letter }}</td>
+                      <td>{{i.applied_at }}</td>                     
+                      <td><a href="" class="btn btn-sm btn-primary">Delete</a></td>
+                    </tr>
+                    
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- <div class="card-footer"></div>
+            </div> -->
+            
+          </div>
+        </div>
+        </div>
+      </section>
+
+
+</div>
+</body>
+
+
+</html>
+
+{% endblock %}

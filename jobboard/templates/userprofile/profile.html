@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Responsive Registration Form | CodingLab </title>
+
+</head>
+<body>
+    
+    {% block content %}
+    
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container rounded bg-white mt-5 mb-5">
+      <div class="row">
+          <div class="col-md-3 border-right">
+              <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <label for="img-input">
+                    
+                    {% if profile.image %}
+                    <img class="rounded-circle mt-5" id="img-preview" width="150px" src="{{ profile.image.url }}">
+                    {% else %}
+                    <img class="rounded-circle mt-5" id="img-preview" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    {% endif %}
+                        
+                </label>
+                <input type="file" name="img" hidden id="img-input">
+                <span class="font-weight-bold">{{ profile.user.username }}</span><span class="text-black-50">{{ profile.user.email }}</span class="text-black-50"><span> {{ profile.dob }} </span></div>
+          </div>
+          <div class="col-md-5 border-right">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="text-right">Profile Settings</h4>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-md-6"><label class="labels">Username</label><input type="text" name="username" class="form-control" placeholder="Username" value="{{ profile.user.username }}"></div>
+                      <div class="col-md-6"><label class="labels">Name</label><input type="text" name="name" class="form-control" value="{{ profile.name }}" placeholder="Name"></div>
+                  </div>
+                  <div class="row mt-3">
+                      <div class="col-md-12"><label class="labels">Email ID</label><input type="text" name="email" class="form-control" placeholder="enter email id" value="{{ profile.user.email }}"></div>
+                      <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" name="phone" class="form-control" placeholder="enter phone number" value="{{ profile.phone }}"></div>
+                      <div class="col-md-12"><label class="labels">Gender</label><select name="gender" id="" class="form-select" >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select></div>
+                      <div class="col-md-12"><label class="labels">DOB</label><input type="date" name="dob" class="form-control"  value=""></div>
+                      <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" name="address1" class="form-control" placeholder="enter address line 1" value="{{ profile.address1 }}"></div>
+                      <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" name="address2" class="form-control" placeholder="enter address line 2" value="{{ profile.address2 }}"></div>
+                  </div>
+                  <!-- <div class="row mt-3">
+                      <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                      <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                  </div> -->
+                  <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+              </div>
+          </div>
+          <!-- <div class="col-md-4">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                  <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                  <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+              </div>
+          </div> -->
+      </div>
+  </div>
+  </div>
+  </div>
+</form>
+
+<script>
+    const imgInput = document.getElementById('img-input')
+    const imgPreview = document.getElementById('img-preview')
+    function addImgUrl(event){
+        const file = event.target.files[0]
+        imgPreview.src = URL.createObjectURL(file)
+    }
+    imgInput.addEventListener('change', addImgUrl)
+
+    const profile = document.getElementById('profile')
+    profile.classList.add('active')
+</script>
+
+  {% endblock %}
